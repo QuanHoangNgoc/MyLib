@@ -18,7 +18,7 @@ class TrainModule:
         torch_ds.set_format("torch")
         return DataLoader(torch_ds, batch_size=bs, shuffle=shuffle, **pdic)
 
-    def get_train_model(model, device=None, gradient_checkpointing=False):
+    def train_on_model(model, device=None, gradient_checkpointing=False):
         if device is not None:
             model.to(device)
         if gradient_checkpointing:
