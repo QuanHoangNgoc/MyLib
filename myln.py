@@ -1,4 +1,4 @@
-from lightning import L
+import lightning as L
 from mytrain import TrainMd, History
 from mymodel import ModelMd
 from myeval import EvalMd
