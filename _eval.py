@@ -1,7 +1,7 @@
 import nltk
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from MyLib.utils import ut
-from MyLib.cpn_data import DataModule
+from MyLib._data import DataModule
 import torch
 from tqdm import tqdm as TQDM
 
