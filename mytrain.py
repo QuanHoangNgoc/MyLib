@@ -27,7 +27,7 @@ class TrainMd:
             model.gradient_checkpointing_enable()
         return model
 
-    def get_adamw_of_model_parmas(model, base_lr=5e-5):
+    def get_adamw_of_tparams(model, base_lr=5e-5):
         param_groups = []
         lr = base_lr
         for name, param in model.named_parameters():
