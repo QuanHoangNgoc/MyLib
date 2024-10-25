@@ -38,7 +38,7 @@ def replace_words_with_numbers(text):
     return text
 
 
-class DataModule:
+class DataCPN:
     def __init__(self) -> None:
         pass
 

@@ -1,7 +1,7 @@
 import nltk
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-from utModule import ut
-from dataModule import DataModule
+from MyLib.utils import ut
+from MyLib.cpn_data import DataModule
 import torch
 from tqdm import tqdm as TQDM
 
@@ -13,7 +13,7 @@ from googletrans import Translator
 translator = Translator()
 
 
-class EvalModule:
+class EvalCPN:
     def __init__(self) -> None:
         pass
 

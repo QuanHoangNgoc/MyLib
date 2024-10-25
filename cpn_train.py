@@ -1,10 +1,10 @@
 import os
 from torch.optim import AdamW
 from torch.utils.data.dataloader import DataLoader
-from utModule import ut
+from MyLib.utils import ut
 
 
-class TrainModule:
+class TrainCPN:
     def __init__(self) -> None:
         pass
 
