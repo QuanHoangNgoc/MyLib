@@ -18,14 +18,16 @@ class TrainCPN:
         torch_ds.set_format("torch")
         return DataLoader(torch_ds, batch_size=bs, shuffle=shuffle, **pdic)
 
-    def train_on_model(model, device=None, gradient_checkpointing=False):
+    def model_to_device_and_activation(
+        model, device=None, gradient_checkpointing=False
+    ):
         if device is not None:
             model.to(device)
         if gradient_checkpointing:
             model.gradient_checkpointing_enable()
-        return model.train()
+        return model
 
-    def get_adamw_from_model(model, base_lr=5e-5):
+    def get_adamw_of_model(model, base_lr=5e-5):
         param_groups = []
         lr = base_lr
         for name, param in model.named_parameters():
@@ -62,4 +64,7 @@ class History:
 
     def print_history(self, key):
         step = len(self.track[key]["loss"][-1])
-        ut.mess(f"[step {step}], {key} loss: {self.track[key]['total'] / step:.4f}")
+        epoch = len(self.track[key])
+        ut.mess(
+            f"[step {step}/{epoch}], {key} loss: {self.track[key]['total'] / step:.4f}"
+        )
