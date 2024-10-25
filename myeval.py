@@ -1,7 +1,7 @@
 import nltk
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from myutils import ut
-from mydata import DataModule
+from mydata import DataMd
 import torch
 from tqdm import tqdm as TQDM
 
@@ -13,7 +13,7 @@ from googletrans import Translator
 translator = Translator()
 
 
-class EvalCPN:
+class EvalMd:
     def __init__(self) -> None:
         pass
 
@@ -41,7 +41,7 @@ class EvalCPN:
         all_decoded = []
         all_answers = testdic[key]
 
-        model_inputs = DataModule.map_dic_enc(
+        model_inputs = DataMd.map_dic_enc(
             testdic,
             data_mapper,
             rm_answer_key=key,
@@ -63,17 +63,13 @@ class EvalCPN:
         all_decoded_vi = [
             translator.translate(text, dest="vi").text for text in all_decoded
         ]
-        all_decoded_vi_norm = [
-            DataModule.normalize_text(text) for text in all_decoded_vi
-        ]
-        average_bleu = EvalModule.compute_bleu(all_decoded_vi_norm, all_answers)
+        all_decoded_vi_norm = [DataMd.normalize_text(text) for text in all_decoded_vi]
+        average_bleu = EvalMd.compute_bleu(all_decoded_vi_norm, all_answers)
         return average_bleu
 
     def eval_epoch(model, testdic, K, data_mapper, key):
         scores = []
         for i in range(0, len(testdic), K):
-            scores.append(
-                EvalModule.eval_step(model, testdic[i : i + K], data_mapper, key)
-            )
+            scores.append(EvalMd.eval_step(model, testdic[i : i + K], data_mapper, key))
             ut.mess(f"unit-bleu: {scores[-1]:.4f}")
         ut.mess(f"full-bleu: {sum(scores) / len(scores):.4f}")

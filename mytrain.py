@@ -4,7 +4,7 @@ from torch.utils.data.dataloader import DataLoader
 from myutils import ut
 
 
-class TrainCPN:
+class TrainMd:
     def __init__(self) -> None:
         pass
 
@@ -19,7 +19,7 @@ class TrainCPN:
         return DataLoader(torch_ds, batch_size=bs, shuffle=shuffle, **pdic)
 
     def model_to_device_and_activation(
-        model, device=None, gradient_checkpointing=False
+        model, device: None, gradient_checkpointing=False
     ):
         if device is not None:
             model.to(device)
@@ -27,7 +27,7 @@ class TrainCPN:
             model.gradient_checkpointing_enable()
         return model
 
-    def get_adamw_of_model(model, base_lr=5e-5):
+    def get_adamw_of_model_parmas(model, base_lr=5e-5):
         param_groups = []
         lr = base_lr
         for name, param in model.named_parameters():

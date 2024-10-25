@@ -6,7 +6,7 @@ from peft import LoraConfig, get_peft_model
 from peft import PeftModel, PeftConfig
 
 
-class ModelCPN:
+class ModelMd:
     def __init__(self) -> None:
         pass
 
