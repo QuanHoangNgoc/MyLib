@@ -1,7 +1,7 @@
 import os
 from torch.optim import AdamW
 from torch.utils.data.dataloader import DataLoader
-from MyLib.utils import ut
+from myutils import ut
 
 
 class TrainCPN:
